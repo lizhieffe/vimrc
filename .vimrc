@@ -255,7 +255,7 @@ set nofoldenable
 
 " For vim-fswitch
 " *.cpp 和 *.h 间切换
-"nmap <silent> <Leader>sw :FSHere<cr>
+nmap <silent> <Leader>sw :FSHere<cr>
 
 " YCM 补全菜单配色
 " 菜单
