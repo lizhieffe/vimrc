@@ -28,14 +28,6 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 Plugin 'ascenator/L9', {'name': 'newL9'}
 
-" Color schemes
-Plugin 'tomasr/molokai'
-
-" ctags
-Plugin 'vim-scripts/ctags.vim'
-
-Plugin 'vim-scripts/AutoTag.git'
-
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -48,11 +40,10 @@ Plugin 'vim-scripts/AutoTag.git'
 "
 " vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
 " call vundle#begin()
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-scripts/phd'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'nathanaelkane/vim-indent-guides'
+"Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'kshenoy/vim-signature'
 Plugin 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines'
@@ -73,7 +64,8 @@ Plugin 'gcmt/wildfire.vim'
 Plugin 'sjl/gundo.vim'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'suan/vim-instant-markdown'
-Plugin 'lilydjwg/fcitx.vim'
+"Plugin 'lilydjwg/fcitx.vim'
+Plugin 'tomasr/molokai'
 
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -121,8 +113,9 @@ set ft=nasm         " Highlight NASM assembly syntax
 au BufRead,BufNewFile *.asm set filetype=nasm
 
 " Highligh char after 80 column.
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
+match Error /\%81v.\+/
 
 "" auto indent
 "set autoindent
@@ -191,10 +184,16 @@ set wildmenu
 " Color scheme. 
 " More can be found
 " http://vimcolorschemetest.googlecode.com/svn/html/index-c.html
+" For solarized
+let g:solarized_termtrans=1
 set background=dark
-"colorscheme solarized
+let g:solarized_termcolors=256
+set t_Co=256
+colorscheme solarized
+" End for solarized
 "colorscheme molokai
-colorscheme phd
+"let g:molokai_original = 1
+"colorscheme phd
 
 " 禁止光标闪烁
 " Also need to run this on Ubuntu (verified on 14.04)
@@ -245,16 +244,6 @@ set tabstop=2
 set shiftwidth=2
 " 让 vim 把连续数量的空格视为一个制表符
 set softtabstop=2
-
-" For vim-indent-guides
-" 随 vim 自启动
-let g:indent_guides_enable_on_vim_startup=1
-" 从第二层开始可视化显示缩进
-let g:indent_guides_start_level=2
-" 色块宽度
-let g:indent_guides_guide_size=1
-" 快捷键 i 开/关缩进可视化
-:nmap <silent> <Leader>i <Plug>IndentGuidesToggle
 
 " 基于缩进或语法进行代码折叠
 " za，打开或关闭当前折叠；zM，关闭所有折叠；zR，打开所有折叠
