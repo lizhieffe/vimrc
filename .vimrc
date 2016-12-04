@@ -67,6 +67,8 @@ Plugin 'suan/vim-instant-markdown'
 "Plugin 'lilydjwg/fcitx.vim'
 Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
 
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -296,6 +298,35 @@ let NERDTreeMinimalUI=1
 " 删除文件时自动删除文件对应 buffer
 let NERDTreeAutoDeleteBuffer=1
 
+" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+" For ctags.
+"
+" Ctrl + ]                  -> Go to definition
+" Ctrl + T                  -> Jump back from the definition
+" Ctrl + w, Ctrl + ]        -> Open the definition in a horizontal split
+" Ctrl + \                  -> Open the definition in a new tab
+" Alt + ]                   -> Open the definition in a vertial split
+" Ctrl + Left MouseClick    -> Go to definition
+" Ctrl + Right MouseClick   -> Jump back from definition
+"
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+" Add extra lookup directory.
+set tags+=tags;$HOME
+hi Pemnu ctermbg=blue ctermfg=white
+hi PmenuSel ctermbg=yellow ctermfg=black
+" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+" Ctags auto update. (xolox/vim-misc)
+" To generate the Ctags, use ":UpdateTags -R ."
+" This should be executed automatically every once in a while.
+" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+" ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+ 
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
