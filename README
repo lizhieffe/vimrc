@@ -1,1 +1,12 @@
 This is my vimrc files.
+
+Reference:
+
+1. Build vim from source. This is recomended for YouCompleteMe.
+https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source
+
+2. For YCM usage, read the User Guild section of
+https://valloric.github.io/YouCompleteMe/#general-usage
+
+2. For Ctags. See usage:
+https://andrew.stwrt.ca/posts/vim-ctags/
