@@ -16,9 +16,8 @@ alias fgrep='fgrep --color'
 
 
 
-alias ls='ls -GFh'
-
-alias ll='ls -lGFh'
+alias ls='ls -aGFh'
+alias ll='ls -alGFh'
 
 
 
