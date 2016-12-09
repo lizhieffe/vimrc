@@ -184,6 +184,8 @@ set nocompatible
 " vim 自身命令行模式智能补全
 set wildmenu
 
+set backspace=2
+
 " Color scheme. 
 " More can be found
 " http://vimcolorschemetest.googlecode.com/svn/html/index-c.html
