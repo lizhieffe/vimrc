@@ -339,3 +339,11 @@ hi PmenuSel ctermbg=yellow ctermfg=black
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 "
+
+" Highlight column at 81.
+hi ColorColumn guibg=#2d2d2d ctermbg=246
+if exists('+colorcolumn')
+  set colorcolumn=81
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>81v.\+', -1)
+endif
