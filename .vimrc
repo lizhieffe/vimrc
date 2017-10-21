@@ -191,9 +191,11 @@ set backspace=2
 " http://vimcolorschemetest.googlecode.com/svn/html/index-c.html
 " For solarized
 let g:solarized_termtrans=1
+" If the color doesn't look right, change the values on the following two lines
+" to 256.
+let g:solarized_termcolors=16
+set t_Co=16
 set background=dark
-let g:solarized_termcolors=256
-set t_Co=256
 colorscheme solarized
 " End for solarized
 "colorscheme molokai
