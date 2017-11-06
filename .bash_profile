@@ -40,3 +40,13 @@ export PATH=$HOME/homebrew/bin:$PATH
 # Create and enter a directory
 
 function mkcd () { mkdir -p "$@" && cd "$@"; }
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias fuck='$(thefuck $(fc -ln -1))'
+
+. ~/.bashrc
