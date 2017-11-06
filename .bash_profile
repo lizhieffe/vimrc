@@ -47,6 +47,5 @@ alias mv='mv -i'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias fuck='$(thefuck $(fc -ln -1))'
 
 . ~/.bashrc
