@@ -69,6 +69,7 @@ Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
+Plugin 'mhinz/vim-signify'
 
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
