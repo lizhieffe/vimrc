@@ -70,6 +70,9 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
 Plugin 'mhinz/vim-signify'
+" This requires to install silver searcher on the machine.
+" See https://github.com/rking/ag.vim
+Plugin 'rking/ag.vim'
 
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
