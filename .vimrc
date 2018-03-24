@@ -377,4 +377,5 @@ endif
 " " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 " set the runtime path to include fzf, a file fuzzy searcher.
+" fzf requires to install in system first using git.
 set rtp+=~/.fzf
