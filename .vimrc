@@ -1,12 +1,12 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Used by Vundle
+set nocompatible
 
-set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -14,19 +14,18 @@ Plugin 'VundleVim/Vundle.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
+" Plugin 'L9'
 " Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
+" Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
+" Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
 " Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-Plugin 'ascenator/L9', {'name': 'newL9'}
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Avoid a name conflict with L9
+" Plugin 'user/L9', {'name': 'newL9'}
 
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -37,9 +36,6 @@ Plugin 'ascenator/L9', {'name': 'newL9'}
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-"
-" vundle 管理的插件列表必须位于 vundle#begin() 和 vundle#end() 之间
-" call vundle#begin()
 Plugin 'vim-scripts/phd'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -56,7 +52,6 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/DrawIt'
 Plugin 'SirVer/ultisnips'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'derekwyatt/vim-protodef'
 Plugin 'scrooloose/nerdtree'
 "Plugin 'fholgado/minibufexpl.vim'
@@ -67,11 +62,11 @@ Plugin 'suan/vim-instant-markdown'
 "Plugin 'lilydjwg/fcitx.vim'
 Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
+"Plugin 'xolox/vim-misc'
+"Plugin 'xolox/vim-easytags'
+Plugin 'cscope.vim'
 Plugin 'mhinz/vim-signify'
-" This requires to install silver searcher on the machine.
-" See https://github.com/rking/ag.vim
+" File content search using the_silver_searcher
 Plugin 'rking/ag.vim'
 
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -83,7 +78,9 @@ Plugin 'rking/ag.vim'
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-"
+
+
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -92,44 +89,40 @@ filetype plugin indent on    " required
 "
 " Brief help
 " :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just
-" :PluginUpdate
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" Used by Vundle Finished.
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set tabstop=2       " The width of a TAB is set to 4.
-                    " Still it is a \t. It is just that
-                    " Vim will interpret it to be having
-                    " a width of 4.
+source /usr/share/vim/google/google.vim
 
-set shiftwidth=2    " Indents will have a width of 4
+Glug codefmt
+Glug codefmt-google
+autocmd FileType bzl AutoFormatBuffer buildifier
 
-set softtabstop=2   " Sets the number of columns for a TAB
+Glug piper plugin[mappings]
+Glug relatedfiles plugin[mappings]
 
-set expandtab       " Expand TABs to spaces
+Glug youcompleteme-google
 
-set number          " Show line number
+Glug g4
 
-set ft=nasm         " Highlight NASM assembly syntax
-au BufRead,BufNewFile *.asm set filetype=nasm
+Glug ultisnips-google
 
-" Highligh char after 80 column.
-"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-"match OverLength /\%81v.\+/
-match Error /\%81v.\+/
+Glug corpweb plugin[mappings]
 
-"" auto indent
-"set autoindent
-"filetype plugin indent on
+source /usr/share/vim/google/default.vim
 
-" Avoid writing headers
-autocmd BufNewFile *.cpp r /path/to/file.cpp
+autocmd BufEnter * silent! lcd %:p:h
+
+" Show line number
+set number
+
+filetype plugin indent on
+syntax on
 
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -188,18 +181,14 @@ set nocompatible
 " vim 自身命令行模式智能补全
 set wildmenu
 
-set backspace=2
-
 " Color scheme. 
 " More can be found
 " http://vimcolorschemetest.googlecode.com/svn/html/index-c.html
 " For solarized
 let g:solarized_termtrans=1
-" If the color doesn't look right, change the values on the following two lines
-" to 256.
-let g:solarized_termcolors=16
-set t_Co=16
 set background=dark
+let g:solarized_termcolors=256
+set t_Co=256
 colorscheme solarized
 " End for solarized
 "colorscheme molokai
@@ -287,7 +276,7 @@ set completeopt-=preview
 " 从第一个键入字符就开始罗列匹配项
 let g:ycm_min_num_of_chars_for_completion=1
 " 禁止缓存匹配项，每次都重新生成匹配项
-let g:ycm_cache_omnifunc=0
+"let g:ycm_cache_omnifunc=0
 " 语法关键字补全         
 let g:ycm_seed_identifiers_with_syntax=1
 
@@ -298,13 +287,18 @@ nmap <Leader>fl :NERDTreeToggle<CR>
 " 设置NERDTree子窗口宽度
 let NERDTreeWinSize=32
 " 设置NERDTree子窗口位置
-let NERDTreeWinPos="right"
+let NERDTreeWinPos="left"
 " 显示隐藏文件
 let NERDTreeShowHidden=1
 " NERDTree 子窗口中不显示冗余帮助信息
 let NERDTreeMinimalUI=1
 " 删除文件时自动删除文件对应 buffer
 let NERDTreeAutoDeleteBuffer=1
+
+" " Nerdtree browser on start
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 1 && !exists("s:std_in") | exe 'NERDTree' argv()[0] | endif
+
 
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " For ctags.
@@ -317,7 +311,7 @@ let NERDTreeAutoDeleteBuffer=1
 " Ctrl + Left MouseClick    -> Go to definition
 " Ctrl + Right MouseClick   -> Jump back from definition
 "
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+" map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " Add extra lookup directory.
 set tags+=tags;$HOME
@@ -346,10 +340,41 @@ hi PmenuSel ctermbg=yellow ctermfg=black
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 "
 
-" Highlight column at 81.
+set clipboard=unnamedplus
+
+" Highlight 80 characters line wrap.
 hi ColorColumn guibg=#2d2d2d ctermbg=246
 if exists('+colorcolumn')
   set colorcolumn=81
 else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>81v.\+', -1)
 endif
+
+" " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+" " For cscope.
+" if has("cscope")
+"   set csprg=/usr/bin/cscope
+"   set csto=0
+"   set cst
+"   set nocsverb
+"   " add any database in current directory
+"   if filereadable("cscope.out")
+"     cs add cscope.out
+"   " else add database pointed to by environment
+"   elseif $CSCOPE_DB != ""
+"     cs add $CSCOPE_DB
+"   endif
+"   set csverb
+" endif
+" nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+" nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+" nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+" nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+" nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+" nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+" nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+" nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+" " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+" set the runtime path to include fzf, a file fuzzy searcher.
+set rtp+=~/.fzf
