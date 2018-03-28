@@ -549,11 +549,10 @@ endif
 " set the runtime path to include fzf, a file fuzzy searcher.
 " fzf requires to install in system first using git.
 set rtp+=~/.fzf
-" cnoreabbrev fl FZF /usr/local/google/home/lizhi/eurekasource/chromium/src/libassistant
-  if exists("FILE_SEARCH_PATH11")
-  else
-    let FILE_SEARCH_PATH = $HOME
-  endif
+if exists("FILE_SEARCH_PATH")
+else
+  let FILE_SEARCH_PATH = $HOME
+endif
 execute "cnoreabbrev fl FZF ".FILE_SEARCH_PATH
 nmap <Leader>f :fl<CR>
 
