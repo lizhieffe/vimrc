@@ -1,0 +1,4 @@
+" Local vimrc file. Put this in your local folder and vim will load the base
+" vimrc file as well as the local ones up to the HOME directory.
+
+let FILE_SEARCH_PATH = "/usr/local/google/home/lizhi/eurekasource/chromium/src/libassistant"

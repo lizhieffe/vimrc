@@ -2,6 +2,9 @@ set nocompatible
 
 filetype off                  " required
 
+" Change <Leader> key to ;
+let mapleader=";"
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -43,7 +46,6 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'derekwyatt/vim-fswitch'
 Plugin 'kshenoy/vim-signature'
 Plugin 'vim-scripts/BOOKMARKS--Mark-and-Highlight-Full-Lines'
-Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/indexer.tar.gz'
 Plugin 'vim-scripts/DfrankUtil'
 Plugin 'vim-scripts/vimprj'
@@ -64,10 +66,171 @@ Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
 "Plugin 'xolox/vim-misc'
 "Plugin 'xolox/vim-easytags'
-Plugin 'cscope.vim'
 Plugin 'mhinz/vim-signify'
+
+
+"
 " File content search using the_silver_searcher
+"
 Plugin 'rking/ag.vim'
+" abbrev al for AG search in libassistant
+" cnoreabbrev al Ag /usr/local/google/home/lizhi/eurekasource/chromium/src/libassistant<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+cnoreabbrev al Ag /usr/local/google/home/lizhi/eurekasource/chromium/src/libassistant<HOME><Right><Right>
+nmap <Leader>h :al<SPACE>
+
+
+"
+" Class outline viewer
+"
+Plugin 'majutsushi/tagbar'
+" Map the key to toggle the viewer.
+nmap <Leader>t :TagbarToggle<CR>
+
+
+"
+" Cscope
+"
+Plugin 'cscope.vim'
+" " cscope_maps.vim settings (http://cscope.sourceforge.net/cscope_maps.vim)
+" " This tests to see if vim was configured with the '--enable-cscope' option
+" " when it was compiled.  If it wasn't, time to recompile vim...
+" if has("cscope")
+" 
+"     """"""""""""" Standard cscope/vim boilerplate
+" 
+"     " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+"     set cscopetag
+" 
+"     " check cscope for definition of a symbol before checking ctags: set to 1
+"     " if you want the reverse search order.
+"     set csto=0
+" 
+"     " add any cscope database in current directory
+"     if filereadable("cscope.out")
+"         cs add cscope.out
+"     " else add the database pointed to by environment variable
+"     elseif $CSCOPE_DB != ""
+"         cs add $CSCOPE_DB
+"     endif
+" 
+"     " show msg when any other cscope db added
+"     set cscopeverbose
+" 
+" 
+"     """"""""""""" My cscope/vim key mappings
+"     "
+"     " The following maps all invoke one of the following cscope search types:
+"     "
+"     "   's'   symbol: find all references to the token under cursor
+"     "   'g'   global: find global definition(s) of the token under cursor
+"     "   'c'   calls:  find all calls to the function name under cursor
+"     "   't'   text:   find all instances of the text under cursor
+"     "   'e'   egrep:  egrep search for the word under cursor
+"     "   'f'   file:   open the filename under cursor
+"     "   'i'   includes: find files that include the filename under cursor
+"     "   'd'   called: find functions that function under cursor calls
+"     "
+"     " Below are three sets of the maps: one set that just jumps to your
+"     " search result, one that splits the existing vim window horizontally and
+"     " diplays your search result in the new window, and one that does the same
+"     " thing, but does a vertical split instead (vim 6 only).
+"     "
+"     " I've used CTRL-\ and CTRL-@ as the starting keys for these maps, as it's
+"     " unlikely that you need their default mappings (CTRL-\'s default use is
+"     " as part of CTRL-\ CTRL-N typemap, which basically just does the same
+"     " thing as hitting 'escape': CTRL-@ doesn't seem to have any default use).
+"     " If you don't like using 'CTRL-@' or CTRL-\, , you can change some or all
+"     " of these maps to use other keys.  One likely candidate is 'CTRL-_'
+"     " (which also maps to CTRL-/, which is easier to type).  By default it is
+"     " used to switch between Hebrew and English keyboard mode.
+"     "
+"     " All of the maps involving the <cfile> macro use '^<cfile>$': this is so
+"     " that searches over '#include <time.h>" return only references to
+"     " 'time.h', and not 'sys/time.h', etc. (by default cscope will return all
+"     " files that contain 'time.h' as part of their name).
+" 
+" 
+"     " To do the first type of search, hit 'CTRL-\', followed by one of the
+"     " cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
+"     " search will be displayed in the current window.  You can use CTRL-T to
+"     " go back to where you were before the search.
+"     "
+" 
+"     nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+"     nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"     nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+" 
+" 
+"     " Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
+"     " makes the vim window split horizontally, with search result displayed in
+"     " the new window.
+"     "
+"     " (Note: earlier versions of vim may not have the :scs command, but it
+"     " can be simulated roughly via:
+"     "    nmap <C-@>s <C-W><C-S> :cs find s <C-R>=expand("<cword>")<CR><CR>
+" 
+"     nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+"     nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"     nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+" 
+" 
+"     " Hitting CTRL-space *twice* before the search type does a vertical
+"     " split instead of a horizontal one (vim 6 and up only)
+"     "
+"     " (Note: you may wish to put a 'set splitright' in your .vimrc
+"     " if you prefer the new window on the right instead of the left
+" 
+"     nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+"     nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+"     nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+"     nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+" 
+" 
+"     """"""""""""" key map timeouts
+"     "
+"     " By default Vim will only wait 1 second for each keystroke in a mapping.
+"     " You may find that too short with the above typemaps.  If so, you should
+"     " either turn off mapping timeouts via 'notimeout'.
+"     "
+"     "set notimeout
+"     "
+"     " Or, you can keep timeouts, by uncommenting the timeoutlen line below,
+"     " with your own personal favorite value (in milliseconds):
+"     "
+"     "set timeoutlen=4000
+"     "
+"     " Either way, since mapping timeout settings by default also set the
+"     " timeouts for multicharacter 'keys codes' (like <F1>), you should also
+"     " set ttimeout and ttimeoutlen: otherwise, you will experience strange
+"     " delays as vim waits for a keystroke after you hit ESC (it will be
+"     " waiting to see if the ESC is actually part of a key code like <F1>).
+"     "
+"     "set ttimeout
+"     "
+"     " personally, I find a tenth of a second to work well for key code
+"     " timeouts. If you experience problems and have a slow terminal or network
+"     " connection, set it higher.  If you don't set ttimeoutlen, the value for
+"     " timeoutlent (default: 1000 = 1 second, which is sluggish) is used.
+"     "
+"     "set ttimeoutlen=100
+" 
+" endif
+
+
 
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -133,9 +296,6 @@ syntax on
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-" Change <Leader> key to ;
-let mapleader=";"
 
 " 开启文件类型侦测
 filetype on
@@ -274,7 +434,7 @@ inoremap <leader>; <C-x><C-o>
 " 补全内容不以分割子窗口形式出现，只显示补全列表
 set completeopt-=preview
 " 从第一个键入字符就开始罗列匹配项
-let g:ycm_min_num_of_chars_for_completion=1
+let g:ycm_min_num_of_chars_for_completion=2
 " 禁止缓存匹配项，每次都重新生成匹配项
 "let g:ycm_cache_omnifunc=0
 " 语法关键字补全         
@@ -350,32 +510,42 @@ else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>81v.\+', -1)
 endif
 
-" " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-" " For cscope.
-" if has("cscope")
-"   set csprg=/usr/bin/cscope
-"   set csto=0
-"   set cst
-"   set nocsverb
-"   " add any database in current directory
-"   if filereadable("cscope.out")
-"     cs add cscope.out
-"   " else add database pointed to by environment
-"   elseif $CSCOPE_DB != ""
-"     cs add $CSCOPE_DB
-"   endif
-"   set csverb
-" endif
-" nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-" nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-" nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-" nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-" nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-" nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-" nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-" nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-" " ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
+"
+" Fuzzy searcher for file name.
+"
 " set the runtime path to include fzf, a file fuzzy searcher.
 " fzf requires to install in system first using git.
 set rtp+=~/.fzf
+cnoreabbrev fl FZF /usr/local/google/home/lizhi/eurekasource/chromium/src/libassistant
+nmap <Leader>f :fl<CR>
+
+
+
+
+" "
+" " Load local .vimrc file
+" "
+" let local_vimrc = ".vimrc"
+" let local_tags = "tags"
+" let local_path = "/"
+" let current_path = getcwd()
+" " If the current path is a child of $HOME directory, start from $HOME
+" if current_path =~ $HOME
+"     let local_path = $HOME . local_path
+"     let current_path = substitute(current_path, $HOME, '', '')
+" endif
+" let path_parts = split(current_path, "/")
+" for path_part in path_parts
+"     let local_path = local_path . path_part . "/"
+"     if filereadable(local_path . local_vimrc)
+"         exe ":so " . local_path . local_vimrc
+"     endif
+"     if filereadable(local_path . local_tags)
+"         exe ":set tags+=" . local_path . local_tags
+"     endif
+" endfor
+" unlet local_vimrc local_tags local_path current_path path_parts
+" 
+
+set cscoperelative
